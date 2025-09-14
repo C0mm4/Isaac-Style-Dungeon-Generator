@@ -24,7 +24,11 @@
 - ✅ Seed Play : 입력값으로 지정된 Seed 를 부여받아 해당 Seed를 기반으로 맵을 생성하여 동일한 플레이를 유지할 수 있음
 
 **데모**  
+랜덤한 방을 생성하고, 스테이지를 진행해 더 큰 던전을 만드는 데모
 ![2025-09-14 19-52-47](https://github.com/user-attachments/assets/d561b0ad-206b-4b50-9082-fd05ec685fc1)
+
+지정된 Seed를 활용해 동일한 시작 구조의 던전을 만드는 데모
+영상의 첫 던전과 마지막 던전의 던전 구조가 동일함을 확인 할 수 있다.
 ![2025-09-14 19-55-20](https://github.com/user-attachments/assets/14fbdf0a-0692-494d-8ade-141388cbde30)
 
 ---
