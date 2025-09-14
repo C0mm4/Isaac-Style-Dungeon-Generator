@@ -1,9 +1,30 @@
-# Isaac-Style-Dungeon-Generator
-Isaac Style Dungeon Generator in Unity 2D
+# 📌 아이작의 구속 스타일 던전 메이커 (ReBirth 이전)
 
-Can't move camera in InGame Tap, active buttons in InGameScene and check in Scene Tap.
+## 1. 모듈 개요 (Overview)  
+- **설명**: 아이작의 구속 스타일의 그리드 방식의 랜덤 던전 생성기
+- **지원 Unity 버전**: 2021.3 LTS 이상  
+- **의존성**: TextMeshPro 설치 필요 (버튼 UI)
 
-You can input GameSeed in input Field. 8 alphabetic charactors.
+---
 
-Push next stage buttons, increase rooms count.
+## 2. 적용 방법 (Usage / Setup)  
+### GameObject Inspector 연결 방식  
+1. Scene에 빈 GameObject 생성
+2. 생성된 Object에 GameManager Component 추가
+3. GameManager에서 자체적으로 던전 생성에 필요한 모듈을 포함하고 있어 따로 추가 연결은 불필요
 
+---
+
+## 3. 주요 기능 (Features)  
+- ✅ 랜덤 던전 생성 로직:
+    1. 시작 방을 생성 후, 4방향으로 생성 가능한 영역을 추가
+    2. 생성 가능한 영역에서 랜덤하게 1개를 선정 (이 때 인접한 방 개수 등 추가 로직을 적용하여 맵의 다양성을 높일 수 있음)
+    3. 선정된 위치에 새로운 방을 생성 후 생성 가능한 영역에 새롭게 생성된 방의 4방향 추가
+- ✅ Stage Level : 스테이지가 증가함에 따라 생성될 수 있는 방의 개수를 늘려 게임의 난이도를 점차 늘릴 수 있음
+- ✅ Seed Play : 입력값으로 지정된 Seed 를 부여받아 해당 Seed를 기반으로 맵을 생성하여 동일한 플레이를 유지할 수 있음
+
+**데모**  
+![2025-09-14 19-52-47](https://github.com/user-attachments/assets/d561b0ad-206b-4b50-9082-fd05ec685fc1)
+![2025-09-14 19-55-20](https://github.com/user-attachments/assets/14fbdf0a-0692-494d-8ade-141388cbde30)
+
+---
