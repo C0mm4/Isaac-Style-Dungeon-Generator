@@ -57,15 +57,9 @@ public class GameManager : MonoBehaviour
     public GameObject persistentObject;
     // == this
 
-    public AudioSource audioSourceBGM;
-    private bool isPaused = false;
     // 시스템 변수
 
     
-    [SerializeField]
-    public Canvas canvas;
-
-
     private void Awake()
     {
         DontDestroyOnLoad(persistentObject);
@@ -86,14 +80,6 @@ public class GameManager : MonoBehaviour
         Screen.SetResolution(gameData.resolution.width, gameData.resolution.height, gameData.isFullscreen);
 
 
-        if(canvas == null)
-        {
-            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceCamera;
-            canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-            canvas.planeDistance = 10;
-        }
-
         Application.targetFrameRate = 30;
         init();
     }
@@ -104,17 +90,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (canvas == null)
-        {
-            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceCamera;
-            canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-            canvas.planeDistance = 10;
-        }
-    }
 
 
     public void init()
@@ -160,5 +135,8 @@ public class GameManager : MonoBehaviour
         MapGen.clear();
     }
 
-
+    public void SetSeed(string seed)
+    {
+        Random.setSeed(seed);
+    }
 }

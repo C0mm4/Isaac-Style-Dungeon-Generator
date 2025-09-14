@@ -42,16 +42,26 @@ public class MapGen
         setParents();
         // Generate StartRoom
         room = startRoomGen();
+        // Set Creatable room position
         addRoom(0,0, room);
+        // Set Start Room Index Number
         room.GetComponent<Room>().index = 0;
         room.transform.parent = dungeonRoom.transform;
+       
         ret.Add(room);
+
         // Generate NormalRoom
         for (int i = 0; i < roomNo; i++)
         {
+            // Find Creatable Position
             target = getRandompos();
+
             room = normalRoomGen();
+
+            // Set Creatable room position
             addRoom(target.Key, target.Value, room);
+
+            // Set Room Index Number
             room.GetComponent<Room>().index = i + 1;
             room.transform.parent = dungeonRoom.transform;
             ret.Add(room);
@@ -97,19 +107,26 @@ public class MapGen
         roomspos.Add(new KeyValuePair<int, int>(x, y));
         for(int i = 0; i < 4; i++)
         {
+            // Search Up, Down, Right, Left Position of rooms
             KeyValuePair<int, int> target = new KeyValuePair<int, int>(x + xpos[i], y + ypos[i]);
+
+            // if there's no room search position,
             if(roomspos.IndexOf(new KeyValuePair<int, int>(target.Key, target.Value)) == -1)
             {
+                // If first time to search, insert data about target position
                 if (!ablepos.ContainsKey(target))
                 {
                     ablepos.Add(target, 1);
                 }
+                // if search point is already visited, update data about target position
                 else
                 {
                     ablepos[target] += 1;
                 }
             }
         }
+
+        // Remove room position in creatable position
         ablepos.Remove(new KeyValuePair<int, int>(x, y));
     }
     
@@ -188,8 +205,11 @@ public class MapGen
     private KeyValuePair<int, int> getRandompos()
     {
         int acount = ablepos.Count();
+        // Get Random Index in creatable position
         KeyValuePair<KeyValuePair<int, int>, int> res = ablepos.ElementAt(GameManager.Random.getMapNext(0, acount));
-        while (res.Value >= 3)
+
+        // Finding locations with fewer than 2 accessible paths to the given point
+        while (res.Value >= 2)
         {
             res = ablepos.ElementAt(GameManager.Random.getMapNext(0, acount));
         }
